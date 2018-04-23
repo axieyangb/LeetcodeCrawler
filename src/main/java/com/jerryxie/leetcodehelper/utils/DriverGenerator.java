@@ -6,7 +6,7 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 public class DriverGenerator {
 	public static WebDriver FirefoxDriver() {
-		System.setProperty("webdriver.gecko.driver", "/home/jerry/geckodriver");
+		System.setProperty("webdriver.gecko.driver", "src/main/resources/webdrivers/geckodriver");
 		return new FirefoxDriver();
 	}
 
@@ -17,7 +17,7 @@ public class DriverGenerator {
 
 	// without ui
 	public static WebDriver PhantomJSDriver() {
-		System.setProperty("phantomjs.binary.path", "/home/jerry/Software/phantomjs-2.1.1-linux-x86_64/bin/phantomjs");
+		System.setProperty("phantomjs.binary.path", "src/main/resources/webdrivers/phantomjs");
 		return new PhantomJSDriver();
 	}
 
