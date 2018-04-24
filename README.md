@@ -3,7 +3,7 @@ A simple crawler to fetch leetcode questions and its corresponding information. 
 
 ## How to start
 ```
-cd dockerfile
+cd dockerfiles
 
 vi docker-compose.yml 
 
