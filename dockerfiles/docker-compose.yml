@@ -1,0 +1,22 @@
+version: '2'
+services:
+  mongodb:
+    image: axieyangb/mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    networks:
+      - crawlernet
+  leetcodecrawler:
+    image: axieyangb/leetcodecrawler
+    environment:
+      - phantomjs=browsers/phantomjs
+      - username=<your leetcode's username>
+      - password=<your leetcodes's password>
+      - mongodb=mongodb
+      - mongoport=27017
+    networks:
+      - crawlernet
+networks:
+  crawlernet:

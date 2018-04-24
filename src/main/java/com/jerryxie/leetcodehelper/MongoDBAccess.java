@@ -21,8 +21,8 @@ public class MongoDBAccess {
 	protected MongoDatabase db;
 
 	public MongoDBAccess() {
-		String mongoAddr = System.getProperty("mongodb", "localhost");
-		String mongoPort = System.getProperty("mongoport", "27017");
+		String mongoAddr = Constants.MONGO_HOST;
+		String mongoPort = Constants.MONGO_PORT;
 		mClient = MongoClients.create("mongodb://" + mongoAddr + ":" + mongoPort);
 		db = mClient.getDatabase("leetcode");
 	}

@@ -30,8 +30,8 @@ public class Parser {
 	MongoDBAccess dbAccess;
 
 	public Parser() {
-		username = System.getProperty("username","");
-		password = System.getProperty("password","");
+		username = Constants.LEETCODE_USERNAME;
+		password = Constants.LEETCODE_PASSWORD;
 		initDriver();
 		dbAccess = new MongoDBAccess();
 		visitedQuestions = dbAccess.getVisitedQuestionSeqs();
@@ -39,7 +39,7 @@ public class Parser {
 	}
 
 	private void initDriver() {
-		driver = DriverGenerator.FirefoxDriver();
+		driver = DriverGenerator.getDriver();
 		driver.manage().window().setSize(new Dimension(1920, 1080));
 		js = (JavascriptExecutor) driver;
 		wait_5 = new WebDriverWait(driver, 20);
@@ -69,6 +69,12 @@ public class Parser {
 		passwordBox.sendKeys(password);
 		WebElement submitBtn = driver.findElement(By.cssSelector("button[name='signin_btn']"));
 		submitBtn.click();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void releaseMemory() {
@@ -87,6 +93,7 @@ public class Parser {
 		for (WebElement row : rows) {
 			System.out.println("Loading " + (nth++) + "/" + rows.size() + "...");
 			Boolean visited = false;
+
 			List<WebElement> cols = row.findElements(By.tagName("td"));
 			Question q = new Question();
 			for (int i = 0; i < cols.size(); i++) {
